@@ -39,9 +39,16 @@ controlData = ds_list_create();
 // from whatever menus are using the control info object currently; which allows more flexibility with how the
 // menus are animated since they don't have to take the control prompt stuff into account.
 alpha = 0;
+alphaTarget = 0;
+alphaSpeed = 0.2;
+
+// A flag that allows the alpha for the control prompt to be handled by another object entirely, which allows
+// for the syncing of the fading in and out of control information to match the current piece of UI or menu
+// that has control over the transparency level of the control information.
+overrideAlpha = false;
 
 // 
-backgroundColorRGB = [0, 0, 0, 64, 64, 64];
+backgroundColorRGB = [0, 0, 0, 0, 0, 0];
 backgroundColor = c_black;
 
 #endregion

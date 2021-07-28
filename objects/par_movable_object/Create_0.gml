@@ -16,6 +16,9 @@ hspd = 0;
 vspd = 0;
 
 // 
-weight = 3;
+weight = 1;
+
+//
+objectKey = -1;
 
 #endregion

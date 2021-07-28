@@ -1,7 +1,7 @@
 /// @description Check For Partner Event Flag or Required Event Flags
 
 // The event that this trigger is responsible for has already be set, delete the object
-if (get_event_flag(eventFlagIndex) == eventFlagRequiredState){
+if (get_event_flag(eventFlagKey) == eventFlagRequiredState){
 	instance_destroy(self);
 	return; // Exit out of the event early
 }

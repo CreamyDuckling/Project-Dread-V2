@@ -10,7 +10,6 @@ if (_length == 0 || alpha <= 0) {return;} // Don't waste time drawing if no cont
 draw_sprite_ext(spr_rectangle, 0, 0, WINDOW_HEIGHT - 14, WINDOW_WIDTH, 1, 0, c_black, alpha);
 draw_sprite_general(spr_rectangle, 0, 0, 0, 1, 1, 0, WINDOW_HEIGHT - 13, WINDOW_WIDTH, 13, 0, backgroundColor, backgroundColor, c_black, c_black, alpha * 0.75);
 
-
 // Set the text and icon to the correct alpha value and then also initialize the shader that draws outlines
 // and enabled the flag that allows the outline shader to actually do its thing.
 draw_set_alpha(alpha);

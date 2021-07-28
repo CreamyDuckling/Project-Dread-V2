@@ -130,7 +130,10 @@ global.invNote = ds_list_create();
 // The main variable for keeping track of the events that have been completed by the player. These are mostly
 // used for cutscenes, but can also be used to prevent/allows certain items, enemies, and other objects from 
 // spawning into a given room.
-global.eventFlags = array_create(5, false);
+global.eventFlags = ds_map_create();
+
+// The main variable that stores the positions of all movable objects within the game.
+global.movableObjectPos = ds_map_create();
 
 // A struct containing data about the overall difficulty of the game. From things like puzzle/exploration
 // difficulty, to modifiers that effect the player and enemies in the game, to things like weapon degredation,

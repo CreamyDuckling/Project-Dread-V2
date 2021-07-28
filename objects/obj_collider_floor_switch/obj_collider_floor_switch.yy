@@ -1,16 +1,13 @@
 {
   "spriteId": {
-    "name": "spr_movable_block",
-    "path": "sprites/spr_movable_block/spr_movable_block.yy",
+    "name": "spr_collider_floor_switch",
+    "path": "sprites/spr_collider_floor_switch/spr_collider_floor_switch.yy",
   },
   "solid": false,
-  "visible": false,
+  "visible": true,
   "spriteMaskId": null,
   "persistent": false,
-  "parentObjectId": {
-    "name": "par_static_entity",
-    "path": "objects/par_static_entity/par_static_entity.yy",
-  },
+  "parentObjectId": null,
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,
@@ -25,17 +22,16 @@
   "physicsShapePoints": [],
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":5,"eventType":7,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":4,"eventType":7,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Movable",
-    "path": "folders/Objects/Entities/Static/Movable.yy",
+    "name": "Colliders",
+    "path": "folders/Objects/Colliders.yy",
   },
   "resourceVersion": "1.0",
-  "name": "par_movable_object",
+  "name": "obj_collider_floor_switch",
   "tags": [],
   "resourceType": "GMObject",
 }

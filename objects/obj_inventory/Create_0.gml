@@ -34,3 +34,15 @@ optionRectSelectedOutlineColor = make_color_rgb(91, 127, 0);
 optionRectAuxSelectedOutlineColor = make_color_rgb(127, 0, 0);
 
 #endregion
+
+#region EDITING VISIBLE CONTROL INFORMATION
+
+// 
+with(global.singletonID[? CONTROL_INFO]){
+	control_info_add_control_data(ICON_AUX_MENU_LEFT, LEFT_ANCHOR, "", false);
+	control_info_add_control_data(ICON_AUX_MENU_RIGHT, LEFT_ANCHOR, "Change Section", true);
+	control_info_fade_in(false, [64, 64, 64]);
+	alpha = 1;
+}
+
+#endregion

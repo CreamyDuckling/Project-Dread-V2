@@ -22,27 +22,35 @@ function set_game_state(_newState, _highPriority){
 
 /// EVENT FLAG FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/// @description Adds a new event flag to the map of event flags. If said flag already exists at the given
+/// key value, that key will be returned for later reference within a given object.
+/// @param key
+function add_event_flag(_key){
+	if (is_undefined(global.eventFlags[? _key])) {ds_map_add(global.eventFlags, _key, false);}
+	return _key; // Always return the key value since it's only ever created once.
+}
+
 /// @desceription Sets an event flag at a given index to either true or false. This allows setting an event flag
 /// without the risk of setting an invalid index, which could happen if not for this function.
-/// @param index
+/// @param key
 /// @param flagState
-function set_event_flag(_index, _flagState){
-	 // Makes sure the flag index is within the bounds of the event flag array
-	if (_index >= 0 && _index < array_length(global.eventFlags)){
-		global.eventFlags[_index] = _flagState;
+function set_event_flag(_key, _flagState){
+	 // Makes sure the flag key exists within the event flag data map
+	if (!is_undefined(global.eventFlags[? _key])){
+		global.eventFlags[? _key] = _flagState;
 		return true; // The flag was successfully set
 	}
 	return false; // Invalid flag attampted to be set, return false
 }
 
-/// @description Gets the state of the event flag at the provided index. However, if an invalid state was provided
-/// to the function it will return false no matter what the flag it was looking for should be.
-/// @param index
-function get_event_flag(_index){
-	if (_index < 0 || _index >= array_length(global.eventFlags)){
+/// @description Gets the state of the event flag at the provided index. However, if an invalid state was 
+/// provided to the function it will return false no matter what the flag it was looking for should be.
+/// @param key
+function get_event_flag(_key){
+	if (is_undefined(global.eventFlags[? _key])){
 		return false; // An invalid index was put into the function, return false
 	}
-	return global.eventFlags[_index];
+	return global.eventFlags[? _key];
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

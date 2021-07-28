@@ -34,10 +34,10 @@ function cutscene_branch_action(_flagIndex, _requiredState, _successIndex, _fail
 
 /// @description Sets a given flag to the provided state, which can be either true or false and then moves
 /// onto the next instruction within the cutscene to execute.
-/// @param flagIndex
+/// @param flagKey
 /// @param flagState
-function cutscene_set_flag(_flagIndex, _flagState){
-	set_event_flag(_flagIndex, _flagState);
+function cutscene_set_flag(_flagKey, _flagState){
+	set_event_flag(_flagKey, _flagState);
 	cutscene_end_action();
 }
 

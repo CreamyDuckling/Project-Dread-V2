@@ -208,13 +208,12 @@ if (global.gameState == GameState.InGame){
 		control_info_add_control_data(ICON_MENU_UP, LEFT_ANCHOR, "", false);
 		control_info_add_control_data(ICON_MENU_RIGHT, LEFT_ANCHOR, "", false);
 		control_info_add_control_data(ICON_MENU_DOWN, LEFT_ANCHOR, "Move", false);
-		control_info_add_control_data(ICON_AUX_MENU_LEFT, LEFT_ANCHOR, "", false);
-		control_info_add_control_data(ICON_AUX_MENU_RIGHT, LEFT_ANCHOR, "Change Section", true);
 		// Icons that are anchored to the right side of the screen
 		control_info_add_control_data(ICON_SELECT, RIGHT_ANCHOR, "Select", false);
 		control_info_add_control_data(ICON_RETURN, RIGHT_ANCHOR, "Return", true);
 		
-		alpha = 1; // TODO -- Make fade-in animation for the control information
+		// Override the alpha level for the control prompt information so that primary menus can control it
+		overrideAlpha = true;
 	}
 	
 	// Store all the entity's previous and current states in a map; changing the states to NO_STATE after.

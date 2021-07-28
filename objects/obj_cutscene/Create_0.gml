@@ -59,6 +59,7 @@ with(global.singletonID[? CONTROL_INFO]){
 	if (ds_list_size(controlData) > 0) {control_info_clear_all();}
 	control_info_add_control_data(ICON_SELECT, RIGHT_ANCHOR, "Next", false);
 	control_info_add_control_data(ICON_RETURN, RIGHT_ANCHOR, "Log", true);
+	control_info_fade_in(true, [64, 64, 64]);
 }
 
 #endregion

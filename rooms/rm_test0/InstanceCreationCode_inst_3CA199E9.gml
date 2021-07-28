@@ -1,4 +1,4 @@
-eventFlagIndex = 0;
+eventFlagKey = add_event_flag("Test_2");
 eventFlagRequiredState = true;
 
 var _player = global.singletonID[? PLAYER];
@@ -71,6 +71,6 @@ ds_list_add(sceneData,
 	[create_textbox_actor_portrait, "Where did they...", Actor.Claire, 1],
 	[create_textbox_actor_portrait, "What the hell is going on?!", Actor.Claire, 5],
 	[cutscene_end_textbox],
-	[cutscene_set_flag, eventFlagIndex, eventFlagRequiredState],
+	[cutscene_set_flag, eventFlagKey, eventFlagRequiredState],
 	[cutscene_wait_for_entity_movement, _player],
 );

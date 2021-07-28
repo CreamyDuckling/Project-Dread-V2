@@ -14,9 +14,6 @@ visible = false;
 
 #region UNIQUE VARIABLE INITIALIZATION
 
-//
-currentTextbox = -1;
-
 // Keyboard input variables
 keyAdvance = false;
 
@@ -119,7 +116,7 @@ if (global.gameState == GameState.InGame){
 	
 	// Clear out the current control information if any exists and add the textbox's controls to it.
 	// Note that if a cutscene is currently happening, the control information will remain on screen
-	// for ites entire duration; meaning this is already initialized.
+	// for its entire duration; meaning this is already initialized.
 	with(global.singletonID[? CONTROL_INFO]){
 		if (ds_list_size(controlData) > 0) {control_info_clear_all();}
 		control_info_add_control_data(ICON_INTERACT, RIGHT_ANCHOR, "Next", true);

@@ -12,4 +12,4 @@ doorUnlockSound = snd_door_unlocked0;
 // event index for the locked door itself, which toggles true once it's been unlocked.
 ds_list_add(requiredKeys, HANDGUN_AMMO);
 ds_list_add(requiredKeys, HANDGUN_AMMO);
-eventFlagIndex = 1;
+eventFlagIndex = add_event_flag("Test_3");

@@ -10,13 +10,6 @@ else {keyAdvance = gamepad_button_check_pressed(global.gamepadID, global.setting
 
 #region OPENING AND CLOSING ANIMATION
 
-// Set the alpha for the control information to match the textbox's current alpha if the textbox is in
-// control of the control info object.
-if (commandControlInfoObject){
-	var _alpha = alpha;
-	with(global.singletonID[? CONTROL_INFO]) {alpha = _alpha;}
-}
-
 // Moves the textbox towards its target; which is faster the further away it is from the target
 y += ((yTarget - y) / 5) * global.deltaTime;
 // Handling the visiblity of the textbox
@@ -70,18 +63,5 @@ if (nextCharacter <= finalCharacter){
 		textboxSoundTimer += textboxSoundSpeed;
 	}
 }
-
-//
-/*if (currentTextbox != textboxIndex){
-	var _actorData, _backgroundColor;
-	_actorData = actorData[? textboxData[| textboxIndex][1]];
-	_backgroundColor = _actorData.textboxColor;
-	with(global.singletonID[? CONTROL_INFO]){
-		backgroundColorRGB[3] = color_get_red(_backgroundColor);
-		backgroundColorRGB[4] = color_get_green(_backgroundColor);
-		backgroundColorRGB[5] = color_get_blue(_backgroundColor);
-	}
-	currentTextbox = textboxIndex;
-}*/
 
 #endregion

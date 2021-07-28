@@ -23,7 +23,7 @@ ds_list_add(sceneData, [cutscene_open, 0.1]); // Adds the initialization instruc
 // event flag list that its flag corresponds to. Finally, the required state variable stores what state the
 // event flag should be for the trigger to be destroyed.
 requiredFlags = ds_list_create();
-eventFlagIndex = -1;
+eventFlagKey = -1;
 eventFlagRequiredState = false;
 
 #endregion

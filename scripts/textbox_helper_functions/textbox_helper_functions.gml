@@ -8,6 +8,12 @@ function add_textbox_data(_text, _actor, _imageIndex){
 	if (ds_list_size(textboxData) == 1){ // Sets the final character to take into account the code in the text.
 		var _index = string_last_pos("~", textboxData[| 0][0]);
 		finalCharacter = _index == 0 ? string_length(textboxData[| 0][0]) : _index - 1;
+		// Fade in the control prompt information if is hasn't been faded in already. Also, set the proper 
+		// color to match the current textbox color.
+		with(global.singletonID[? CONTROL_INFO]){
+			var _color = get_actor_data(_actor).textboxColor; // Stores into a temporary variable for improved readability
+			control_info_fade_in(true, [color_get_red(_color) / 4, color_get_green(_color) / 4, color_get_blue(_color) / 4]);
+		}
 	}
 }
 
@@ -40,7 +46,20 @@ function open_next_textbox(){
 		textboxIndex = ds_list_size(textboxData) - 1;
 		textboxCode = "end";
 		isClosing = true;
+		// Fade away the control information data if the textbox is in control of the control information.
+		if (commandControlInfoObject){
+			with(global.singletonID[? CONTROL_INFO]) {control_info_fade_away();}
+		}
 		return; // Exit the script early
+	}
+	
+	// Fades over to the next color for the textbox if the current color for the control prompt doesn't 
+	// match the new color for the coming textbox.
+	if (commandControlInfoObject){
+		var _color = actorData[? textboxData[| textboxIndex][1]].textboxColor;
+		with(global.singletonID[? CONTROL_INFO]){
+			if (backgroundColor != _color) {control_info_fade_in(false, [color_get_red(_color) / 4, color_get_green(_color) / 4, color_get_blue(_color) / 4]);}
+		}
 	}
 	
 	// Check if a code exists for the next textbox. If so, the final character will be set the character

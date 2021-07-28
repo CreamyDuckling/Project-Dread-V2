@@ -8,7 +8,7 @@ if (global.singletonID[? TEXTBOX] != id) {return;}
 // Set the control information to invisible if the textbox is in control of how the control info object
 // displays its information, which will stop if from wasting time rendering.
 if (commandControlInfoObject){
-	with(global.singletonID[? CONTROL_INFO]) {alpha = 0;}
+	with(global.singletonID[? CONTROL_INFO]) {control_info_fade_away();}
 }
 
 // Restore the player's states from before the textbox was opened and initialized, but don't do that if a

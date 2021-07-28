@@ -12,17 +12,13 @@ function cutscene_wait(_seconds){
 /// @description An initialization action that occurs at the 0th index of the cutscene, and it's added to the 
 /// scene list upon the trigger object's creation. This means it's not necessary to add this instruction 
 /// anywhere in the instructions for the respective cutscene's instructions.
-/// @param fadeSpeed
-function cutscene_open(_fadeSpeed){
+function cutscene_open(){
 	// Increases the alpha for the control information that should be visible on the screen. Once that
 	// value has surpassed 1 it will be clipped back to a maximum of 1 and the cutscene will begin.
 	var _endAction = false;
 	with(global.singletonID[? CONTROL_INFO]){
-		alpha += _fadeSpeed * global.deltaTime;
-		if (alpha >= 1){ // Info has finished fading in, move onto rest of cutscene
-			alpha = 1;
-			_endAction = true;
-		}
+		if (alpha >= 1) {_endAction = true;}
+		if (alphaTarget != 1) {control_info_fade_in(true, [64, 64, 64]);}
 	}
 	
 	// The cutscene can begin, as the control information has full faded in.
@@ -32,14 +28,10 @@ function cutscene_open(_fadeSpeed){
 /// @description Much like the instruction above, this one is automatically placed into the list of cutscene
 /// instructions, but placed at the ending instead of the beginning of said instructions. One the alpha for
 /// the controls has gone below 0 and the cutscene object will be destroyed.
-/// @param fadeSpeed
-function cutscene_close(_fadeSpeed){
+function cutscene_close(){
 	with(global.singletonID[? CONTROL_INFO]){
-		alpha -= _fadeSpeed * global.deltaTime;
-		if (alpha <= 0){ // Set alpha to zero and destroy the cutscene object
-			alpha = 0;
-			instance_destroy(other);
-		}
+		if (alpha <= 0) {instance_destroy(other);}
+		if (alphaTarget != 0) {control_info_fade_away();}
 	}
 }
 
@@ -81,7 +73,10 @@ function cutscene_init_textbox(){
 /// NOTE --- THIS MUST BE PLACED AT THE END OF ANY TEXTBOX CHUNKS WITHIN THE CUTSCENE DATA!!!
 ///
 function cutscene_end_textbox(){
-	if (!instance_exists(global.singletonID[? TEXTBOX])) {cutscene_end_action();}
+	if (!instance_exists(global.singletonID[? TEXTBOX])){
+		with(global.singletonID[? CONTROL_INFO]) {control_info_fade_in(false, [64, 64, 64]);}
+		cutscene_end_action();
+	}
 }
 
 /// @description Moves an entity object to a given destination, which will prevent the cutscene from moving

@@ -9,6 +9,12 @@ menu_option_clear();
 // If this isn't the primary menu, don't execute any of the code below
 if (!primaryMenu) {return;}
 
+// Reset the alpha override for the control information object
+with(global.singletonID[? CONTROL_INFO]){
+	overrideAlpha = false;
+	alpha = 0; // FOR TESTING
+}
+
 // Make sure to return the game to its previous state.
 set_game_state(global.prevGameState, true);
 
