@@ -29,9 +29,25 @@ drawFunction = NO_SCRIPT;
 backgroundColor = make_color_rgb(32, 32, 32);
 
 // 
-optionRectHighlightOutlineColor = make_color_rgb(127, 114, 63);
-optionRectSelectedOutlineColor = make_color_rgb(91, 127, 0);
-optionRectAuxSelectedOutlineColor = make_color_rgb(127, 0, 0);
+//optionRectHighlightOutlineColor = make_color_rgb(127, 114, 63);
+//optionRectSelectedOutlineColor = make_color_rgb(91, 127, 0);
+//optionRectAuxSelectedOutlineColor = make_color_rgb(127, 0, 0);
+
+// ITEM SECTION VARIABLES ///////////////////////////////////////////////////////////////////////////////////
+
+// 
+sprite = spr_claire_unarmed_walk;
+spriteLoopRange = [12, 16];
+spriteImageIndex = spriteLoopRange[0];
+spriteImageSpeed = 1;
+
+// 
+var _hitpoints = 0;
+with(global.singletonID[? PLAYER]) {_hitpoints = hitpoints / maxHitpoints;}
+playerHitpointPercentage = _hitpoints;
+playerHitpointString = number_format(floor(_hitpoints * 100), "000");
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #endregion
 

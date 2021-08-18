@@ -1,4 +1,4 @@
-eventFlagKey = add_event_flag("Test_2");
+eventFlagKey = add_event_flag("Test_1");
 eventFlagRequiredState = true;
 
 var _player = global.singletonID[? PLAYER];

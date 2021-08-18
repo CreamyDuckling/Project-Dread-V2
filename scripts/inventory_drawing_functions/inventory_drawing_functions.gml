@@ -1,22 +1,61 @@
-/// @description
+/// @description 
 function inventory_draw_item_section(){
 	// Set the alpha for the entire section of code, but don't let anything be drawn when the alpha is set
 	// a value of 0. It'll be invisible to the player, and thus a waste to process.
 	if (image_alpha <= 0) {return;}
 	draw_set_alpha(image_alpha);
+	
+	// Draw all the background elements/GUI images and textures that are drawn with a fadeaway in any of the
+	// four coordinate directions (-x/+x and -y/+y axis). Drawn before any text to prevent the text from
+	// apprearing behind the menu's background elements.
+	shader_set(fadeawayShader);
 
-	draw_sprite_ext(spr_rectangle, 0, 5, 136, 120, 1, 0, c_black, image_alpha);
+	// Background for the player portrait area within the item section of the player's inventory
+	shader_set_uniform_f_array(sThreshold, [0, 0, 45, WINDOW_HEIGHT]);
+	shader_set_uniform_f_array(sFadeCutoff, [0, 0, 80, WINDOW_HEIGHT]);
+	draw_sprite_ext(spr_rectangle, 0, 24, 18, 58, 14, 0, backgroundColor, image_alpha * 0.75);
+	draw_sprite_ext(spr_rectangle, 0, 0, 17, 80, 1, 0, c_black, image_alpha);
+	draw_sprite_ext(spr_rectangle, 0, 24, 32, 58, 1, 0, c_black, image_alpha);
+
+	shader_reset();
+	
+	// Drawing the rest of the player's portrait image background, which doesn't use any fancy shaders
+	draw_sprite_ext(spr_rectangle, 0, 0, 18, 24, 30, 0, backgroundColor, image_alpha * 0.75);
+	draw_sprite_ext(spr_rectangle, 0, 0, 48, 25, 1, 0, c_black, image_alpha);
+	draw_sprite_ext(spr_rectangle, 0, 24, 32, 1, 16, 0, c_black, image_alpha);
+	
+	// 
+	draw_sprite_ext(spr_hitpoint_icon, 0, 26, 19, 1, 1, 0, c_white, image_alpha);
+	
+	// The lines of code that handle the animation for the player's portrait sprite. It's based on the same
+	// animation speeds used when the player is animated in-game; just with different variables. The key
+	// different is the player's hitpoints corresponds to the speed that the sprite is animated at.
+	spriteImageIndex += sprite_get_speed(sprite) / ANIMATION_FPS * spriteImageSpeed * playerHitpointPercentage * global.deltaTime;
+	if (spriteImageIndex >= spriteLoopRange[1]) {spriteImageIndex = spriteLoopRange[0];}
+	
+	// Draw the player's portrait, which animates their downward walking sprite in an endless loop
+	draw_sprite_ext(sprite, floor(spriteImageIndex), 11, 42, 1, 1, 0, c_white, image_alpha);
+	
+	// 
+	shader_set(outlineShader);
+	shader_set_uniform_i(sDrawOutline, 1);
+	
+	// Display the player's current hitpoints; abstracted from the true value as four different words to give
+	// a general idea of how good/bad the character is doing.
+	currentFont = outline_set_font(optionFont, global.fontTextures[? optionFont], sPixelWidth, sPixelHeight, currentFont);
+	draw_text(40, 18, playerHitpointString + "%");
+
+	/*draw_sprite_ext(spr_rectangle, 0, 5, 136, 120, 1, 0, c_black, image_alpha);
 	
 	shader_set(fadeawayShader);
-	shader_set_uniform_f_array(sScreenSize, [WINDOW_WIDTH, WINDOW_HEIGHT]);
 
-	shader_set_uniform_f_array(sThreshold, [160, WINDOW_HEIGHT]);
-	shader_set_uniform_f_array(sFadeCutoff, [240, WINDOW_HEIGHT]);
+	shader_set_uniform_f_array(sThreshold, [0, 0, 160, WINDOW_HEIGHT]);
+	shader_set_uniform_f_array(sFadeCutoff, [0, 0, 240, WINDOW_HEIGHT]);
 	draw_sprite_ext(spr_rectangle, 0, 0, 121, 240, 45, 0, backgroundColor, image_alpha * 0.75);
 	draw_sprite_ext(spr_rectangle, 0, 0, 120, 240, 1, 0, c_black, image_alpha);
 	
-	shader_set_uniform_f_array(sThreshold, [88, WINDOW_HEIGHT]);
-	shader_set_uniform_f_array(sFadeCutoff, [110, WINDOW_HEIGHT]);
+	shader_set_uniform_f_array(sThreshold, [0, 0, 88, WINDOW_HEIGHT]);
+	shader_set_uniform_f_array(sFadeCutoff, [0, 0, 110, WINDOW_HEIGHT]);
 	draw_sprite_ext(spr_rectangle, 0, 0, 14, 110, 106, 0, backgroundColor, image_alpha * 0.75);
 
 	shader_reset();
@@ -107,7 +146,7 @@ function inventory_draw_item_section(){
 			draw_text(optionPos[X] + 19 + (xx * optionSpacing[X]), optionPos[Y] + 12 + (yy * optionSpacing[Y]), string(global.invItem[_curOption][1]));
 		}
 	}
-	draw_set_halign(fa_left);
+	draw_set_halign(fa_left);*/
 	
 	// Reset both the outline color that's being used and the outline shader
 	currentOutlineColor = [0, 0, 0];
